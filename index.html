@@ -270,6 +270,64 @@
 
     /* ── SVG icons inline ── */
     svg { display: inline-block; vertical-align: middle; }
+
+    /* ── MOBILE OPTIMIZATIONS ── */
+    @media (max-width: 768px) {
+      /* Table swipe hint */
+      .table-wrap::before { content: '← Zum Scrollen wischen →'; display: block; text-align: center; font-size: .75rem; color: var(--muted); padding: .5rem .75rem; background: var(--bg); border-bottom: 1px solid var(--border); }
+      /* Footer grid: hide empty placeholder, brand spans full width */
+      .footer-col:empty { display: none; }
+      .footer-grid > div:first-child { grid-column: 1 / -1; }
+      .footer-about { max-width: 100%; }
+    }
+
+    @media (max-width: 640px) {
+      .section { padding: 3rem 0; }
+      .container { padding: 0 1rem; }
+
+      /* Hero */
+      #hero { padding: 6rem 0 3rem; }
+      .hero-h1 { font-size: clamp(1.875rem, 7vw, 2.5rem); }
+      .hero-ctas { flex-direction: column; }
+      .hero-ctas .btn { width: 100%; justify-content: center; }
+      .trust-pill { font-size: .75rem; padding: .3rem .7rem; }
+
+      /* Steps */
+      .hiw-cta-box { padding: 1.5rem; margin-top: 2rem; }
+
+      /* Form */
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .form-card { padding: 1.5rem 1.25rem; }
+      .leistungen-grid { gap: .5rem; }
+      .btn-submit { font-size: .9375rem; }
+
+      /* FAQ */
+      .faq-btn { padding: 1rem 1.25rem; gap: .625rem; }
+      .faq-question { font-size: .9375rem; }
+      .faq-answer { padding: 0 1.25rem 1rem; }
+      .faq-bottom { padding: 1.5rem; }
+
+      /* Footer */
+      .footer-cta-band { padding: 2rem 0; }
+      .footer-cta-inner h3 { font-size: 1.25rem; }
+      .footer-main { padding: 2.5rem 0 1.5rem; }
+      .footer-trust { flex-wrap: wrap; gap: .625rem; }
+
+      /* Modal – sheet from bottom */
+      .modal-overlay { padding: 0; align-items: flex-end; }
+      .modal-box { padding: 1.5rem 1.25rem 2rem; border-radius: 1.25rem 1.25rem 0 0; max-height: 88vh; overflow-y: auto; }
+      .modal-box h1 { font-size: 1.375rem; }
+      .modal-close { top: 1rem; right: 1rem; }
+
+      /* Section title */
+      .section-title { font-size: clamp(1.5rem, 6vw, 1.875rem); }
+      .section-sub { font-size: .9375rem; margin-bottom: 2.5rem; }
+    }
+
+    @media (max-width: 380px) {
+      .leistungen-grid { grid-template-columns: 1fr; }
+      .hero-trust { gap: .375rem; }
+    }
   </style>
 </head>
 <body>
