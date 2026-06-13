@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tarifexperts. – Zahnzusatzversicherung Vergleich</title>
+  <meta name="description" content="Vergleichen Sie deutschlandweit alle Zahnzusatzversicherungen auf dem Markt. Kostenlos, unverbindlich und auf Ihre Bedürfnisse abgestimmt." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: #F4F5F6; color: #0F1F2E; -webkit-font-smoothing: antialiased; }
+
+    /* ── Variables ── */
+    :root {
+      --primary:       #1F6F78;
+      --primary-dark:  #165E66;
+      --primary-light: #2A9AA6;
+      --primary-50:    #E8F4F5;
+      --primary-100:   #C5E4E7;
+      --accent:        #EE6C4D;
+      --accent-dark:   #D4593C;
+      --bg:            #F4F5F6;
+      --surface:       #FFFFFF;
+      --text:          #0F1F2E;
+      --text-sec:      #2D3F50;
+      --muted:         #6B7280;
+      --border:        #E2E4E6;
+    }
+
+    /* ── Utilities ── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 5rem 0; }
+    .section-bg-white { background: #fff; }
+    .badge { display: inline-flex; align-items: center; gap: .375rem; padding: .375rem 1rem; border-radius: 9999px; font-size: .8125rem; font-weight: 600; }
+    .badge-primary { background: var(--primary-50); color: var(--primary); }
+    .section-label { text-align: center; margin-bottom: 1rem; }
+    .section-title { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 800; line-height: 1.2; text-align: center; margin-bottom: 1rem; }
+    .section-sub { font-size: 1.0625rem; color: var(--muted); text-align: center; max-width: 38rem; margin: 0 auto 3.5rem; line-height: 1.65; }
+    .gradient-text { background: linear-gradient(135deg, var(--primary), var(--primary-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .card { background: #fff; border-radius: 1.25rem; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,.07); transition: box-shadow .25s; }
+    .card:hover { box-shadow: 0 10px 25px -5px rgba(31,111,120,.14); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; padding: .8125rem 1.75rem; border-radius: .625rem; font-weight: 700; font-size: .9375rem; cursor: pointer; transition: all .2s; border: 2px solid transparent; text-decoration: none; line-height: 1; }
+    .btn-primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .btn-primary:hover { background: var(--primary-dark); border-color: var(--primary-dark); box-shadow: 0 4px 14px rgba(31,111,120,.35); }
+    .btn-outline { background: transparent; color: var(--primary); border-color: var(--primary); }
+    .btn-outline:hover { background: var(--primary); color: #fff; }
+    .btn-white { background: #fff; color: var(--text); border-color: transparent; }
+    .btn-white:hover { background: #f5f5f5; box-shadow: 0 6px 20px rgba(0,0,0,.12); }
+    .btn-ghost-white { background: rgba(255,255,255,.12); color: #fff; border-color: rgba(255,255,255,.22); backdrop-filter: blur(6px); }
+    .btn-ghost-white:hover { background: rgba(255,255,255,.22); }
+
+    /* ── HEADER ── */
+    #header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: all .3s; }
+    #header.scrolled { background: rgba(255,255,255,.96); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); box-shadow: 0 1px 8px rgba(0,0,0,.07); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 4.5rem; }
+    .logo { font-size: 1.25rem; font-weight: 800; letter-spacing: -.02em; text-decoration: none; transition: color .3s; color: #fff; }
+    #header.scrolled .logo { color: var(--text); }
+    .logo-dot { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: .9375rem; font-weight: 500; transition: color .2s; color: rgba(255,255,255,.82); }
+    #header.scrolled .nav-links a { color: var(--text-sec); }
+    .nav-links a:hover, #header.scrolled .nav-links a:hover { color: var(--primary); }
+    .header-cta { font-size: .875rem; padding: .625rem 1.375rem; }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: .5rem; color: #fff; }
+    #header.scrolled .hamburger { color: var(--text); }
+    .mobile-menu { display: none; background: #fff; border-top: 1px solid var(--border); }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a { display: block; padding: .75rem 1.5rem; text-decoration: none; color: var(--text-sec); font-weight: 500; }
+    .mobile-menu a:hover { color: var(--primary); background: var(--bg); }
+    .mobile-menu .btn { margin: .75rem 1.5rem 1rem; display: flex; }
+    @media (max-width: 768px) {
+      .nav-links, .header-cta { display: none; }
+      .hamburger { display: block; }
+    }
+
+    /* ── HERO ── */
+    #hero { min-height: 100vh; background: linear-gradient(135deg, #0F1F2E 0%, #1F6F78 100%); position: relative; display: flex; align-items: center; padding: 8rem 0 5rem; overflow: hidden; }
+    .hero-orb { position: absolute; border-radius: 50%; pointer-events: none; }
+    .hero-orb-1 { width: 500px; height: 500px; top: -100px; right: -100px; background: rgba(255,255,255,.04); }
+    .hero-orb-2 { width: 350px; height: 350px; bottom: -80px; left: -60px; background: rgba(255,255,255,.03); }
+    .hero-orb-3 { width: 700px; height: 700px; top: 50%; left: 50%; transform: translate(-50%,-50%); background: radial-gradient(circle, rgba(31,111,120,.18) 0%, transparent 70%); }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; } .hero-card { display: none; } }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: .5rem; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15); border-radius: 9999px; padding: .4rem 1rem; color: rgba(255,255,255,.9); font-size: .8125rem; font-weight: 500; margin-bottom: 1.5rem; backdrop-filter: blur(6px); }
+    .hero-pulse { width: .5rem; height: .5rem; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(.85)} }
+    .hero-h1 { font-size: clamp(2.25rem, 5vw, 3.5rem); font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 1.5rem; }
+    .hero-h1 .accent { color: var(--accent); }
+    .hero-p { color: rgba(255,255,255,.72); font-size: 1.0625rem; line-height: 1.7; margin-bottom: 2rem; max-width: 30rem; }
+    .hero-trust { display: flex; flex-wrap: wrap; gap: .625rem; margin-bottom: 2.25rem; }
+    .trust-pill { display: inline-flex; align-items: center; gap: .5rem; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.14); border-radius: 9999px; padding: .375rem .875rem; color: #fff; font-size: .8125rem; font-weight: 500; backdrop-filter: blur(6px); }
+    .trust-pill svg { color: var(--accent); }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
+    .hero-social { display: flex; align-items: center; gap: .75rem; }
+    .avatar-stack { display: flex; }
+    .avatar-stack span { width: 2rem; height: 2rem; border-radius: 50%; border: 2px solid rgba(255,255,255,.4); margin-left: -.5rem; display: block; }
+    .avatar-stack span:first-child { margin-left: 0; }
+    .stars { display: flex; gap: 2px; }
+    .stars svg { fill: #FBBF24; color: #FBBF24; }
+    .social-text { font-size: .75rem; color: rgba(255,255,255,.6); margin-top: 2px; }
+    .social-text strong { color: #fff; }
+    /* Hero card */
+    .hero-card { background: rgba(255,255,255,.1); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,.14); border-radius: 1.5rem; padding: 2rem; }
+    .hero-card h3 { color: #fff; font-weight: 600; font-size: 1.0625rem; text-align: center; margin-bottom: 1.5rem; }
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem; }
+    .stat-box { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.1); border-radius: 1rem; padding: 1.25rem; text-align: center; }
+    .stat-value { font-size: 1.875rem; font-weight: 800; color: #fff; }
+    .stat-label { font-size: .75rem; color: rgba(255,255,255,.6); margin-top: .25rem; }
+    .hero-advantage { background: rgba(238,108,77,.15); border: 1px solid rgba(238,108,77,.3); border-radius: .75rem; padding: 1rem; display: flex; gap: .75rem; margin-bottom: 1rem; }
+    .hero-advantage p { font-size: .8125rem; color: rgba(255,255,255,.7); line-height: 1.5; }
+    .hero-advantage strong { color: #fff; }
+    .hero-wave { position: absolute; bottom: 0; left: 0; right: 0; }
+
+    /* ── HOW IT WORKS ── */
+    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; position: relative; }
+    @media (max-width: 768px) { .steps-grid { grid-template-columns: 1fr; } }
+    .step-connector { position: absolute; top: 2.5rem; left: 0; right: 0; height: 1px; background: var(--border); z-index: 0; }
+    @media (max-width: 768px) { .step-connector { display: none; } }
+    .step { display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; }
+    .step-icon-wrap { position: relative; margin-bottom: 1.5rem; z-index: 1; }
+    .step-icon { width: 4rem; height: 4rem; border-radius: 1rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,.15); transition: transform .3s; }
+    .step:hover .step-icon { transform: scale(1.1); }
+    .step-num { position: absolute; top: -.5rem; right: -.5rem; width: 1.5rem; height: 1.5rem; background: #fff; border: 1px solid var(--border); border-radius: 50%; font-size: .7rem; font-weight: 700; color: var(--muted); display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+    .step-card { padding: 1.5rem; width: 100%; }
+    .step-label { font-size: .6875rem; font-weight: 700; letter-spacing: .12em; color: var(--muted); margin-bottom: .5rem; text-transform: uppercase; }
+    .step-card h3 { font-size: 1.1875rem; font-weight: 700; color: var(--text); margin-bottom: .625rem; }
+    .step-card p { font-size: .875rem; color: var(--muted); line-height: 1.65; }
+    .hiw-cta-box { margin-top: 3.5rem; background: #fff; border: 1px solid var(--border); border-radius: 1.25rem; padding: 2rem; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,.06); max-width: 30rem; margin-left: auto; margin-right: auto; }
+    .hiw-cta-box p { color: var(--text); font-weight: 600; margin-bottom: .375rem; }
+    .hiw-cta-box small { color: var(--muted); font-size: .875rem; display: block; margin-bottom: 1.25rem; }
+
+    /* ── COMPARISON TABLE ── */
+    .table-wrap { overflow-x: auto; border-radius: 1.25rem; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,.07); }
+    table { width: 100%; min-width: 700px; border-collapse: collapse; }
+    thead tr { background: var(--bg); border-bottom: 1px solid var(--border); }
+    th { padding: 1rem 1.25rem; font-size: .875rem; font-weight: 600; color: var(--muted); text-align: center; }
+    th:first-child { text-align: left; }
+    th small { display: block; font-weight: 400; font-size: .75rem; margin-top: .2rem; color: var(--muted); }
+    tbody tr { border-bottom: 1px solid var(--border); background: #fff; transition: background .15s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--bg); }
+    tbody tr.recommended { background: rgba(232,244,245,.5); }
+    td { padding: 1.25rem; text-align: center; vertical-align: middle; }
+    td:first-child { text-align: left; }
+    .provider-name { font-weight: 700; font-size: .9375rem; color: var(--text); display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; margin-bottom: .25rem; }
+    .provider-sub { font-size: .8125rem; color: var(--muted); }
+    .provider-rating { display: flex; align-items: center; gap: .25rem; font-size: .75rem; font-weight: 600; color: var(--text); margin: .3rem 0; }
+    .provider-badge { font-size: .75rem; font-weight: 600; color: var(--primary); margin-top: .25rem; }
+    .rec-badge { background: var(--accent-50, #FEF0EC); color: var(--accent-dark); font-size: .6875rem; font-weight: 700; padding: .2rem .6rem; border-radius: 9999px; }
+    .coverage { display: inline-flex; align-items: center; justify-content: center; padding: .25rem .625rem; border-radius: .5rem; font-size: .875rem; font-weight: 700; }
+    .coverage-100 { background: var(--primary-50); color: var(--primary-dark); }
+    .coverage-high { background: rgba(232,244,245,.7); color: var(--primary); }
+    .coverage-mid { color: var(--muted); background: var(--bg); }
+    .coverage-none { color: #EF4444; }
+    .price-main { font-size: 1.125rem; font-weight: 800; color: var(--text); }
+    .price-main.highlight { color: var(--primary); }
+    .price-sub { font-size: .75rem; color: var(--muted); }
+    .table-note { display: flex; align-items: flex-start; gap: .5rem; font-size: .75rem; color: var(--muted); margin-top: 1rem; }
+
+    /* ── FORM ── */
+    #anfrage { background: var(--bg); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    @media (max-width: 860px) { .form-grid { grid-template-columns: 1fr; } }
+    .form-eyebrow { margin-bottom: 1.5rem; }
+    .form-info h2 { font-size: clamp(1.75rem, 3.5vw, 2.25rem); font-weight: 800; line-height: 1.2; margin-bottom: 1rem; }
+    .form-info p { color: var(--muted); font-size: 1rem; line-height: 1.65; margin-bottom: 2rem; }
+    .benefits { display: flex; flex-direction: column; gap: 1.125rem; margin-bottom: 2rem; }
+    .benefit { display: flex; gap: 1rem; align-items: flex-start; }
+    .benefit-icon { width: 2.5rem; height: 2.5rem; background: var(--primary-50); border-radius: .75rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .benefit-icon svg { color: var(--primary); }
+    .benefit-text h4 { font-size: .9375rem; font-weight: 600; color: var(--text); margin-bottom: .2rem; }
+    .benefit-text p { font-size: .8125rem; color: var(--muted); line-height: 1.5; }
+    .trust-note { background: var(--primary-50); border: 1px solid var(--primary-100); border-radius: .75rem; padding: 1rem; display: flex; gap: .75rem; align-items: flex-start; }
+    .trust-note p { font-size: .875rem; color: var(--text-sec); line-height: 1.5; }
+    .trust-note strong { color: var(--text); }
+    .trust-note .savings { color: var(--accent); font-weight: 700; }
+    .form-card { padding: 2rem; }
+    .form-card h3 { font-size: 1.0625rem; font-weight: 700; margin-bottom: 1.5rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { margin-bottom: 1.125rem; }
+    label { display: block; font-size: .875rem; font-weight: 500; color: var(--text); margin-bottom: .4rem; }
+    .req { color: #EF4444; }
+    input { width: 100%; padding: .75rem 1rem; border: 1px solid var(--border); border-radius: .625rem; font-size: .9375rem; color: var(--text); background: #fff; font-family: inherit; transition: all .2s; outline: none; }
+    input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(31,111,120,.12); }
+    input::placeholder { color: var(--muted); }
+    .leistungen-label { font-size: .875rem; font-weight: 500; color: var(--text); margin-bottom: .625rem; display: block; }
+    .leistungen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .625rem; margin-bottom: 1.125rem; }
+    .leistung-btn { display: flex; flex-direction: column; align-items: flex-start; padding: .75rem; border-radius: .75rem; border: 2px solid var(--border); background: #fff; cursor: pointer; transition: all .2s; text-align: left; }
+    .leistung-btn.active { border-color: var(--primary); background: var(--primary-50); }
+    .leistung-top { display: flex; align-items: center; gap: .5rem; width: 100%; margin-bottom: .15rem; }
+    .leistung-check { width: 1rem; height: 1rem; border-radius: .25rem; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all .2s; }
+    .leistung-btn.active .leistung-check { background: var(--primary); border-color: var(--primary); }
+    .leistung-name { font-size: .875rem; font-weight: 600; color: var(--text); }
+    .leistung-desc { font-size: .75rem; color: var(--muted); padding-left: 1.5rem; }
+    .privacy-note { font-size: .75rem; color: var(--muted); line-height: 1.5; margin-bottom: 1.25rem; }
+    .privacy-note a { color: var(--primary); text-decoration: none; }
+    .btn-submit { width: 100%; padding: 1rem; font-size: 1rem; }
+    .success-card { text-align: center; padding: 3rem 2rem; }
+    .success-icon { width: 5rem; height: 5rem; background: var(--primary-50); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; }
+    .success-icon svg { color: var(--primary); }
+    .success-card h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: .75rem; }
+    .success-card p { color: var(--muted); max-width: 22rem; margin: 0 auto 1.5rem; line-height: 1.6; }
+    .success-actions { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FAQ ── */
+    #faq { background: #fff; }
+    .faq-list { display: flex; flex-direction: column; gap: .75rem; max-width: 52rem; margin: 0 auto; }
+    .faq-item { border-radius: 1rem; border: 1px solid var(--border); overflow: hidden; transition: all .2s; }
+    .faq-item.open { border-color: rgba(31,111,120,.3); box-shadow: 0 4px 14px rgba(31,111,120,.08); background: rgba(232,244,245,.25); }
+    .faq-btn { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; background: none; border: none; cursor: pointer; text-align: left; }
+    .faq-question { font-size: 1rem; font-weight: 600; color: var(--text); line-height: 1.4; }
+    .faq-item.open .faq-question { color: var(--primary); }
+    .faq-chevron { width: 2rem; height: 2rem; border-radius: 50%; background: var(--bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all .3s; color: var(--muted); }
+    .faq-item.open .faq-chevron { background: var(--primary); color: #fff; transform: rotate(180deg); }
+    .faq-answer { padding: 0 1.5rem 1.25rem; display: none; }
+    .faq-item.open .faq-answer { display: block; }
+    .faq-divider { height: 1px; background: rgba(31,111,120,.12); margin-bottom: 1rem; }
+    .faq-answer p { font-size: .9375rem; color: var(--muted); line-height: 1.7; }
+    .faq-bottom { text-align: center; margin-top: 3rem; background: var(--bg); border-radius: 1.25rem; border: 1px solid var(--border); padding: 2rem; max-width: 52rem; margin-left: auto; margin-right: auto; }
+    .faq-bottom h3 { font-weight: 700; font-size: 1.125rem; margin-bottom: .5rem; }
+    .faq-bottom p { color: var(--muted); font-size: .9375rem; margin-bottom: 1.5rem; }
+    .faq-bottom-ctas { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ── IMPRESSUM MODAL ── */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(15,31,46,.6); backdrop-filter: blur(4px); z-index: 200; overflow-y: auto; padding: 2rem 1rem; }
+    .modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+    .modal-box { background: #fff; border-radius: 1.5rem; width: 100%; max-width: 52rem; padding: 2.5rem; position: relative; margin: auto; box-shadow: 0 20px 60px rgba(0,0,0,.2); }
+    .modal-close { position: absolute; top: 1.25rem; right: 1.25rem; background: var(--bg); border: 1px solid var(--border); border-radius: .5rem; width: 2.25rem; height: 2.25rem; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--muted); transition: all .2s; }
+    .modal-close:hover { background: var(--primary-50); color: var(--primary); }
+    .modal-box h1 { font-size: 1.75rem; font-weight: 800; color: var(--text); margin-bottom: .25rem; }
+    .modal-box .modal-meta { font-size: .8125rem; color: var(--muted); margin-bottom: 2rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
+    .imp-section { margin-bottom: 1.75rem; }
+    .imp-section h2 { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: .625rem; display: flex; align-items: center; gap: .5rem; }
+    .imp-section h2::before { content: ''; display: block; width: 3px; height: 1rem; background: var(--accent); border-radius: 2px; flex-shrink: 0; }
+    .imp-section p, .imp-section address { font-size: .9rem; color: var(--text-sec); line-height: 1.7; font-style: normal; }
+    .imp-section a { color: var(--primary); text-decoration: none; }
+    .imp-section a:hover { text-decoration: underline; }
+    .imp-reg { display: inline-block; background: var(--primary-50); border: 1px solid var(--primary-100); border-radius: .5rem; padding: .375rem .875rem; font-size: .875rem; font-weight: 600; color: var(--primary); margin-top: .375rem; }
+    .imp-divider { height: 1px; background: var(--border); margin: 1.75rem 0; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--text); color: #fff; }
+    .footer-cta-band { background: var(--primary); padding: 3rem 0; }
+    .footer-cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-cta-inner h3 { font-size: 1.5rem; font-weight: 800; color: #fff; margin-bottom: .25rem; }
+    .footer-cta-inner p { color: rgba(255,255,255,.75); font-size: .9375rem; }
+    .footer-main { padding: 4rem 0 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } .footer-cta-inner { flex-direction: column; align-items: flex-start; } }
+    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+    .footer-logo { font-size: 1.25rem; font-weight: 800; color: #fff; letter-spacing: -.02em; display: inline-block; margin-bottom: 1rem; text-decoration: none; }
+    .footer-about { color: rgba(255,255,255,.5); font-size: .875rem; line-height: 1.65; max-width: 18rem; margin-bottom: 1.5rem; }
+    .footer-contact { display: flex; flex-direction: column; gap: .75rem; }
+    .footer-contact a, .footer-contact span { display: flex; align-items: center; gap: .625rem; color: rgba(255,255,255,.6); font-size: .875rem; text-decoration: none; transition: color .2s; }
+    .footer-contact a:hover { color: #fff; }
+    .footer-contact svg { color: var(--accent); flex-shrink: 0; }
+    .footer-col h4 { color: #fff; font-weight: 600; font-size: .9375rem; margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .625rem; }
+    .footer-col a { color: rgba(255,255,255,.55); font-size: .875rem; text-decoration: none; transition: color .2s; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.08); padding: 1.5rem 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; gap: 1rem; }
+    .footer-copy { color: rgba(255,255,255,.35); font-size: .75rem; }
+    .footer-trust { display: flex; align-items: center; gap: 1.25rem; }
+    .footer-trust span { display: flex; align-items: center; gap: .375rem; color: rgba(255,255,255,.45); font-size: .75rem; }
+    .footer-trust svg { color: var(--accent); }
+    @media (max-width: 480px) { .footer-bottom { flex-direction: column; align-items: flex-start; } }
+
+    /* ── SVG icons inline ── */
+    svg { display: inline-block; vertical-align: middle; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════ HEADER ═══════════════════════════ -->
+<header id="header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="#" class="logo">tarifexperts<span class="logo-dot">.</span></a>
+      <ul class="nav-links">
+        <li><a href="#vergleich">Vergleich</a></li>
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+      <a href="#anfrage" class="btn btn-primary header-cta">Jetzt vergleichen</a>
+      <button class="hamburger" id="hamburger" aria-label="Menü">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#vergleich">Vergleich</a>
+    <a href="#leistungen">Leistungen</a>
+    <a href="#faq">FAQ</a>
+    <a href="#kontakt">Kontakt</a>
+    <a href="#anfrage" class="btn btn-primary">Jetzt vergleichen</a>
+  </div>
+</header>
+
+<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+<section id="hero">
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+  <div class="container" style="position:relative;z-index:1">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow">
+          <span class="hero-pulse"></span>
+          Deutschlandweiter Versicherungsvergleich
+        </div>
+        <h1 class="hero-h1">Der schnellste <span class="accent">Zahnzusatz-Vergleich</span> für Sie</h1>
+        <p class="hero-p">Wir vergleichen alle Zahnzusatzversicherungen auf dem deutschen Markt – transparent, unabhängig und auf Ihre persönlichen Bedürfnisse abgestimmt.</p>
+        <div class="hero-trust">
+          <div class="trust-pill">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            500+ Tarife verglichen
+          </div>
+          <div class="trust-pill">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+            100% kostenlos
+          </div>
+          <div class="trust-pill">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+            Unverbindlich & sicher
+          </div>
+        </div>
+        <div class="hero-ctas">
+          <a href="#anfrage" class="btn btn-white">Jetzt kostenlos vergleichen <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></a>
+          <a href="#vergleich" class="btn btn-ghost-white">Tarife ansehen</a>
+        </div>
+        <div class="hero-social" style="flex-direction:column;align-items:flex-start;gap:.3rem">
+          <div class="stars">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="social-text">Über <strong>12.000 zufriedene Kunden</strong></div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h3>tarifexperts<span style="color:var(--accent)">.</span> auf einen Blick</h3>
+        <div class="stats-grid">
+          <div class="stat-box"><div class="stat-value">500+</div><div class="stat-label">Verglichene Tarife</div></div>
+          <div class="stat-box"><div class="stat-value">98%</div><div class="stat-label">Kundenzufriedenheit</div></div>
+          <div class="stat-box"><div class="stat-value">50+</div><div class="stat-label">Versicherungsanbieter</div></div>
+          <div class="stat-box"><div class="stat-value">24h</div><div class="stat-label">Schnelle Beratung</div></div>
+        </div>
+        <div class="hero-advantage">
+          <svg width="20" height="20" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          <p><strong>Ihr persönlicher Vorteil:</strong> Sparen Sie bis zu <strong>40%</strong> im Vergleich zum Durchschnittstarif – durch unseren unabhängigen Vergleich.</p>
+        </div>
+        <a href="#anfrage" class="btn btn-white" style="width:100%;justify-content:center">Vergleich starten →</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block">
+      <path d="M0 80L1440 80L1440 40C1200 10 960 0 720 0C480 0 240 10 0 40L0 80Z" fill="#F4F5F6"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ HOW IT WORKS ═══════════════════════════ -->
+<section id="leistungen" class="section">
+  <div class="container">
+    <div class="section-label"><span class="badge badge-primary">So einfach geht's</span></div>
+    <h2 class="section-title">In 3 Schritten zum <span class="gradient-text">besten Tarif</span></h2>
+    <p class="section-sub">Unser Prozess ist so gestaltet, dass Sie in wenigen Minuten den optimalen Zahnschutz für sich finden – ohne Fachchinesisch, ohne Druck.</p>
+    <div class="steps-grid">
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-icon-wrap">
+          <div class="step-icon" style="background:var(--primary)">
+            <svg width="28" height="28" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>
+          </div>
+          <span class="step-num">1</span>
+        </div>
+        <div class="card step-card" style="border-color:var(--primary-100);background:var(--primary-50)">
+          <div class="step-label">Schritt 01</div>
+          <h3>Angaben machen</h3>
+          <p>Geben Sie Ihr Alter, Ihre Postleitzahl und die für Sie wichtigen Leistungen an – in unter 2 Minuten.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-icon-wrap">
+          <div class="step-icon" style="background:var(--accent)">
+            <svg width="28" height="28" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <span class="step-num">2</span>
+        </div>
+        <div class="card step-card" style="border-color:rgba(238,108,77,.2);background:#FEF0EC">
+          <div class="step-label">Schritt 02</div>
+          <h3>Alle Tarife vergleichen</h3>
+          <p>Wir analysieren automatisch über 500 Tarife von 50+ Versicherungsanbietern – transparent und unabhängig.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-icon-wrap">
+          <div class="step-icon" style="background:var(--primary-dark)">
+            <svg width="28" height="28" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+          </div>
+          <span class="step-num">3</span>
+        </div>
+        <div class="card step-card" style="border-color:var(--primary-100);background:var(--primary-50)">
+          <div class="step-label">Schritt 03</div>
+          <h3>Besten Tarif erhalten</h3>
+          <p>Sie erhalten Ihren persönlichen Top-Tarif – abgestimmt auf Ihre Bedürfnisse und Ihren Geldbeutel.</p>
+        </div>
+      </div>
+    </div>
+    <div class="hiw-cta-box">
+      <p>Bereit für Ihren persönlichen Vergleich?</p>
+      <small>Kostenlos, unverbindlich und in wenigen Minuten erledigt.</small>
+      <a href="#anfrage" class="btn btn-primary">Jetzt starten</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ COMPARISON TABLE ═══════════════════════════ -->
+<section id="vergleich" class="section section-bg-white">
+  <div class="container">
+    <div class="section-label"><span class="badge badge-primary">Aktuelle Tarifübersicht</span></div>
+    <h2 class="section-title">Tarife im direkten <span class="gradient-text">Vergleich</span></h2>
+    <p class="section-sub">Alle Angaben beziehen sich auf den Erstattungsanteil am zahnärztlichen Honorar. Preise gelten für Versicherte ab 30 Jahren.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="text-align:left">Anbieter &amp; Tarif</th>
+            <th>Zahnersatz<small>Kronen, Brücken, Implantate</small></th>
+            <th>Zahnbehandlung<small>Füllungen, Wurzelbehandlungen</small></th>
+            <th>Kieferorthopädie<small>Zahnspangen, Korrektur</small></th>
+            <th>Prophylaxe<small>Prof. Zahnreinigung</small></th>
+            <th>Preis</th>
+            <th>Aktion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="recommended">
+            <td>
+              <div class="provider-name">Münchner Verein <span class="rec-badge">Empfohlen</span></div>
+              <div class="provider-sub">MV Zahn 100</div>
+              <div class="provider-rating"><svg width="12" height="12" viewBox="0 0 24 24" style="fill:#FBBF24;color:#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> 4.9</div>
+              <div class="provider-badge">✓ Bestes Preis-Leistungs-Verhältnis</div>
+            </td>
+            <td><span class="coverage coverage-100">100%</span></td>
+            <td><span class="coverage coverage-100">100%</span></td>
+            <td><span class="coverage coverage-high">80%</span></td>
+            <td><span class="coverage coverage-100">100%</span></td>
+            <td><div class="price-main highlight">22,90 €</div><div class="price-sub">/Monat</div></td>
+            <td><a href="#anfrage" class="btn btn-primary" style="font-size:.8125rem;padding:.5rem 1rem">Anfragen</a></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="provider-name">Allianz</div>
+              <div class="provider-sub">DentalBest Premium</div>
+              <div class="provider-rating"><svg width="12" height="12" viewBox="0 0 24 24" style="fill:#FBBF24;color:#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> 4.7</div>
+              <div class="provider-badge">✓ Maximaler Schutz</div>
+            </td>
+            <td><span class="coverage coverage-100">100%</span></td>
+            <td><span class="coverage coverage-100">100%</span></td>
+            <td><span class="coverage coverage-100">100%</span></td>
+            <td><span class="coverage coverage-100">100%</span></td>
+            <td><div class="price-main">34,90 €</div><div class="price-sub">/Monat</div></td>
+            <td><a href="#anfrage" class="btn btn-outline" style="font-size:.8125rem;padding:.5rem 1rem">Anfragen</a></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="provider-name">Deutsche Familienversicherung</div>
+              <div class="provider-sub">DFV ZahnSchutz Premium</div>
+              <div class="provider-rating"><svg width="12" height="12" viewBox="0 0 24 24" style="fill:#FBBF24;color:#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> 4.6</div>
+              <div class="provider-badge">✓ Günstigster Premiumtarif</div>
+            </td>
+            <td><span class="coverage coverage-high">90%</span></td>
+            <td><span class="coverage coverage-100">100%</span></td>
+            <td><span class="coverage coverage-high">80%</span></td>
+            <td><span class="coverage coverage-100">100%</span></td>
+            <td><div class="price-main">19,90 €</div><div class="price-sub">/Monat</div></td>
+            <td><a href="#anfrage" class="btn btn-outline" style="font-size:.8125rem;padding:.5rem 1rem">Anfragen</a></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="provider-name">Gothaer</div>
+              <div class="provider-sub">MediZ Premium</div>
+              <div class="provider-rating"><svg width="12" height="12" viewBox="0 0 24 24" style="fill:#FBBF24;color:#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> 4.5</div>
+            </td>
+            <td><span class="coverage coverage-high">90%</span></td>
+            <td><span class="coverage coverage-high">90%</span></td>
+            <td><span class="coverage coverage-mid">70%</span></td>
+            <td><span class="coverage coverage-100">100%</span></td>
+            <td><div class="price-main">17,90 €</div><div class="price-sub">/Monat</div></td>
+            <td><a href="#anfrage" class="btn btn-outline" style="font-size:.8125rem;padding:.5rem 1rem">Anfragen</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-note">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Die dargestellten Tarife und Preise dienen als Orientierung und können je nach Alter und Gesundheitszustand variieren. Für ein exaktes Angebot nutzen Sie bitte unser Vergleichsformular.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ FORM ═══════════════════════════ -->
+<section id="anfrage" class="section">
+  <div class="container">
+    <div class="form-grid">
+      <div class="form-info">
+        <div class="form-eyebrow"><span class="badge badge-primary">Kostenloser Vergleich</span></div>
+        <h2>Ihr persönlicher <span class="gradient-text">Tarifvergleich</span></h2>
+        <p>Füllen Sie das Formular aus und erhalten Sie innerhalb von 24 Stunden Ihren maßgeschneiderten Vergleich der besten Zahnzusatzversicherungen.</p>
+        <div class="benefits">
+          <div class="benefit">
+            <div class="benefit-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div class="benefit-text"><h4>100% unabhängig</h4><p>Wir sind an keine Versicherung gebunden und vergleichen objektiv.</p></div>
+          </div>
+          <div class="benefit">
+            <div class="benefit-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+            <div class="benefit-text"><h4>Datenschutz garantiert</h4><p>Ihre Daten werden verschlüsselt übertragen und nicht weitergegeben.</p></div>
+          </div>
+          <div class="benefit">
+            <div class="benefit-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+            <div class="benefit-text"><h4>Persönliche Beratung</h4><p>Unser Expertenteam berät Sie individuell und ohne Zeitdruck.</p></div>
+          </div>
+        </div>
+        <div class="trust-note">
+          <svg width="20" height="20" fill="none" stroke="var(--primary)" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          <p>Über <strong>12.000 Kunden</strong> haben mit tarifexperts ihre ideale Zahnzusatzversicherung gefunden. Durchschnittliche Ersparnis: <span class="savings">127 € pro Jahr.</span></p>
+        </div>
+      </div>
+      <div>
+        <div id="form-container" class="card form-card">
+          <h3>Ihre Angaben (kostenlos &amp; unverbindlich)</h3>
+          <form id="contact-form" onsubmit="submitForm(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Vorname <span class="req">*</span></label>
+                <input type="text" required placeholder="Max" />
+              </div>
+              <div class="form-group">
+                <label>Nachname <span class="req">*</span></label>
+                <input type="text" required placeholder="Mustermann" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Geburtsdatum <span class="req">*</span></label>
+                <input type="date" required />
+              </div>
+              <div class="form-group">
+                <label>Postleitzahl <span class="req">*</span></label>
+                <input type="text" required placeholder="10115" maxlength="5" pattern="[0-9]{5}" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>E-Mail-Adresse <span class="req">*</span></label>
+              <input type="email" required placeholder="max.mustermann@email.de" />
+            </div>
+            <span class="leistungen-label">Welche Leistungen sind Ihnen wichtig?</span>
+            <div class="leistungen-grid">
+              <button type="button" class="leistung-btn" onclick="toggleLeistung(this)">
+                <div class="leistung-top"><span class="leistung-check"></span><span class="leistung-name">Zahnersatz</span></div>
+                <span class="leistung-desc">Kronen, Brücken, Implantate</span>
+              </button>
+              <button type="button" class="leistung-btn" onclick="toggleLeistung(this)">
+                <div class="leistung-top"><span class="leistung-check"></span><span class="leistung-name">Kieferorthopädie</span></div>
+                <span class="leistung-desc">Zahnspangen, Korrekturen</span>
+              </button>
+              <button type="button" class="leistung-btn" onclick="toggleLeistung(this)">
+                <div class="leistung-top"><span class="leistung-check"></span><span class="leistung-name">Prophylaxe</span></div>
+                <span class="leistung-desc">Professionelle Zahnreinigung</span>
+              </button>
+              <button type="button" class="leistung-btn" onclick="toggleLeistung(this)">
+                <div class="leistung-top"><span class="leistung-check"></span><span class="leistung-name">Zahnbehandlung</span></div>
+                <span class="leistung-desc">Füllungen, Wurzelbehandlung</span>
+              </button>
+            </div>
+            <p class="privacy-note">Mit dem Absenden stimmen Sie unserer <a href="#" onclick="document.getElementById('datenschutz-modal').classList.add('open');return false;">Datenschutzerklärung</a> zu. Ihre Daten werden ausschließlich zur Erstellung Ihres Tarifvergleichs verwendet.</p>
+            <button type="submit" class="btn btn-primary btn-submit">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Kostenlosen Vergleich anfordern
+            </button>
+          </form>
+        </div>
+        <div id="success-container" class="card success-card" style="display:none">
+          <div class="success-icon">
+            <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <h2>Vielen Dank für Ihre Anfrage!</h2>
+          <p>Wir haben Ihre Daten erhalten und werden uns innerhalb von <strong>24 Stunden</strong> mit Ihrem persönlichen Tarifvergleich bei Ihnen melden.</p>
+          <div class="success-actions">
+            <button onclick="resetForm()" class="btn btn-outline">Neue Anfrage stellen</button>
+            <a href="#vergleich" class="btn btn-primary">Tarife ansehen</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ FAQ ═══════════════════════════ -->
+<section id="faq" class="section section-bg-white">
+  <div class="container">
+    <div class="section-label"><span class="badge badge-primary">Häufige Fragen</span></div>
+    <h2 class="section-title">Alles, was Sie über <span class="gradient-text">Zahnzusatzversicherungen</span> wissen müssen</h2>
+    <p class="section-sub">Unsere Experten beantworten die häufigsten Fragen – klar, verständlich und ohne Fachchinesisch.</p>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-question">Was ist eine Zahnzusatzversicherung?</span>
+          <span class="faq-chevron"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-divider"></div><p>Eine Zahnzusatzversicherung ergänzt die Leistungen der gesetzlichen Krankenkasse (GKV) beim Zahnarzt. Die gesetzliche Versicherung übernimmt meist nur Basisleistungen – eine Zahnzusatzversicherung schließt diese Lücken bei Zahnersatz, Zahnbehandlungen, Kieferorthopädie und Prophylaxe. Je nach Tarif werden 70–100 % der Kosten erstattet.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-question">Wie viel kostet eine Zahnzusatzversicherung?</span>
+          <span class="faq-chevron"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-divider"></div><p>Die Kosten variieren je nach Alter, Gesundheitszustand und gewünschten Leistungen. Einfache Tarife beginnen bereits ab ca. 8–15 € pro Monat, umfangreichere Premium-Tarife liegen bei 25–50 €. Unser Vergleich zeigt Ihnen transparent alle Kosten und Leistungen – so finden Sie das beste Preis-Leistungs-Verhältnis für Ihre Situation.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-question">Wann sollte ich eine Zahnzusatzversicherung abschließen?</span>
+          <span class="faq-chevron"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-divider"></div><p>Je früher, desto besser! Viele Versicherungen haben Wartezeiten von 3–8 Monaten und lehnen Anträge bei vorhandenen Vorerkrankungen ab. Im jungen Alter sind die Beiträge am günstigsten und Sie profitieren länger von den Leistungen. Wichtig: Schließen Sie die Versicherung ab, bevor ein konkreter Behandlungsbedarf entsteht.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-question">Welche Leistungen sind bei einer Zahnzusatzversicherung wichtig?</span>
+          <span class="faq-chevron"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-divider"></div><p>Die wichtigsten Leistungsbereiche sind: (1) Zahnersatz – hier können schnell hohe Kosten entstehen (Implantate kosten mehrere tausend Euro), (2) Zahnbehandlung – für Füllungen und Wurzelbehandlungen, (3) Prophylaxe – für die professionelle Zahnreinigung (PZR), die die GKV kaum erstattet, sowie (4) Kieferorthopädie – besonders wichtig für Kinder und Jugendliche.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-question">Gibt es Wartezeiten bei einer Zahnzusatzversicherung?</span>
+          <span class="faq-chevron"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-divider"></div><p>Bei den meisten Zahnzusatzversicherungen gilt eine Wartezeit von 3–8 Monaten. In dieser Zeit können keine Leistungen abgerufen werden. Ausnahmen gelten häufig für Unfälle. Einige Premium-Tarife verzichten auf Wartezeiten – allerdings zu höheren Prämien.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-question">Was bedeutet Erstattungshöhe und Staffelung?</span>
+          <span class="faq-chevron"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-divider"></div><p>Viele Tarife erstatten in den ersten Jahren nur einen begrenzten Betrag (z. B. maximal 500 € im ersten Jahr, 1.000 € im zweiten Jahr). Diese Staffelung schützt die Versicherung vor Schäden direkt nach Vertragsabschluss. Achten Sie im Vergleich auf die genauen Maximalgrenzen – tarifexperts weist alle diese Details transparent aus.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-question">Kann ich die Zahnzusatzversicherung steuerlich absetzen?</span>
+          <span class="faq-chevron"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-divider"></div><p>Ja, Beiträge zur Zahnzusatzversicherung können in der Steuererklärung als Sonderausgaben (Vorsorgeaufwendungen) geltend gemacht werden. Je nach Höhe der anderen Vorsorgeaufwendungen kann dies die Steuerlast reduzieren. Lassen Sie sich dazu am besten von einem Steuerberater informieren.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-question">Was passiert, wenn ich den Anbieter wechseln möchte?</span>
+          <span class="faq-chevron"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-divider"></div><p>Ein Wechsel ist grundsätzlich möglich, jedoch müssen Sie die Kündigungsfristen Ihres aktuellen Vertrages beachten (meist 1–3 Monate zum Jahresende). Beim neuen Anbieter beginnen Wartezeiten und Staffelungen neu. Wir beraten Sie gerne zu einem optimalen Wechselzeitpunkt.</p></div>
+      </div>
+    </div>
+    <div class="faq-bottom" style="margin-top:2.5rem">
+      <h3>Noch Fragen? Wir helfen gerne!</h3>
+      <p>Unser Expertenteam steht Ihnen werktags von 9–18 Uhr zur Verfügung.</p>
+      <div class="faq-bottom-ctas">
+        <a href="#anfrage" class="btn btn-primary">Kostenlose Beratung</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+<footer id="kontakt">
+  <div class="footer-cta-band">
+    <div class="container">
+      <div class="footer-cta-inner">
+        <div>
+          <h3>Bereit, den besten Tarif zu finden?</h3>
+          <p>Kostenlos, unverbindlich und in wenigen Minuten erledigt.</p>
+        </div>
+        <a href="#anfrage" class="btn btn-white">Jetzt vergleichen →</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-main">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="#" class="footer-logo">tarifexperts<span style="color:var(--accent)">.</span></a>
+          <div class="footer-contact">
+            <a href="mailto:info@tarifexperts.de">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              info@tarifexperts.de
+            </a>
+            <a href="tel:+491605648066">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.64 3.38 2 2 0 0 1 3.62 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              +49 160 5648066
+            </a>
+            <a href="tel:+491781305804">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.64 3.38 2 2 0 0 1 3.62 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              +49 178 1305804
+            </a>
+            <span>
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Stendaler Str. 119, 12627 Berlin
+            </span>
+          </div>
+        </div>
+        <div class="footer-col"></div>
+        <div class="footer-col">
+          <h4>Service</h4>
+          <ul>
+            <li><a href="#anfrage">Kostenloser Vergleich</a></li>
+            <li><a href="#vergleich">Tarifvergleich</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Rechtliches</h4>
+          <ul>
+            <li><a href="#" onclick="document.getElementById('impressum-modal').classList.add('open');return false;">Impressum</a></li>
+            <li><a href="#" onclick="document.getElementById('datenschutz-modal').classList.add('open');return false;">Datenschutz</a></li>
+            <li><a href="#" onclick="document.getElementById('agb-modal').classList.add('open');return false;">AGB</a></li>
+            <li><a href="#" onclick="document.getElementById('cookie-modal').classList.add('open');return false;">Cookie-Richtlinie</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2026 tarifexperts GmbH. Alle Rechte vorbehalten.</span>
+        <div class="footer-trust">
+          <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> SSL-verschlüsselt</span>
+          <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg> DSGVO-konform</span>
+          <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> Unabhängiger Vergleich</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════ IMPRESSUM MODAL ═══════════════════════════ -->
+<div class="modal-overlay" id="impressum-modal" onclick="closeImpressum(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="document.getElementById('impressum-modal').classList.remove('open')">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <h1>Impressum</h1>
+    <p class="modal-meta">Letzte Aktualisierung: 31.10.2024</p>
+
+    <div class="imp-section">
+      <h2>Betreiberangaben</h2>
+      <address>
+        Versicherungsmakler mit Erlaubnis nach § 34d Abs. 1 GewO<br>
+        <strong>Stivan Stamenov</strong><br>
+        Stendaler Straße 119<br>
+        12627 Berlin<br>
+        Deutschland
+      </address>
+    </div>
+
+    <div class="imp-section">
+      <h2>Kontakt</h2>
+      <p>
+        Telefon: <a href="tel:+491781305804">+49 178 1305804</a><br>
+        E-Mail: <a href="mailto:info@tarifexperts.de">info@tarifexperts.de</a><br>
+        Website: <a href="https://www.tarifexperts.de" target="_blank">www.tarifexperts.de</a>
+      </p>
+    </div>
+
+    <div class="imp-divider"></div>
+
+    <div class="imp-section">
+      <h2>Gewerbeanmeldung</h2>
+      <p>Erlaubnis nach § 34d Abs. 1 GewO<br>Genehmigt durch Industrie- und Handelskammer Berlin</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>Berufskammer</h2>
+      <p>IHK Berlin, Fasanenstraße 85, 10623 Berlin<br><a href="https://www.ihk-berlin.de" target="_blank">www.ihk-berlin.de</a></p>
+    </div>
+
+    <div class="imp-section">
+      <h2>Berufsbezeichnung</h2>
+      <p>Versicherungsmakler mit Erlaubnis nach § 34d Abs. 1 GewO</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>Aufsichtsbehörde</h2>
+      <p>§ 34d Abs. 1 GewO, IHK Berlin, Fasanenstraße 85, 10623 Berlin<br><a href="https://www.ihk-berlin.de" target="_blank">www.ihk-berlin.de</a></p>
+    </div>
+
+    <div class="imp-divider"></div>
+
+    <div class="imp-section">
+      <h2>Vermittlerregister und Registernummern</h2>
+      <p>
+        Deutsche Industrie- und Handelskammer (DIHK)<br>
+        Breite Straße 29, 10178 Berlin<br>
+        Auskunft über Tel.: <a href="tel:+493020308-0">030 20308-0</a> oder unter <a href="https://www.vermittlerregister.info" target="_blank">www.vermittlerregister.info</a>
+      </p>
+      <span class="imp-reg">Versicherungsvermittler-Register: D-KT53-BT2Z1-08</span>
+    </div>
+
+    <div class="imp-section">
+      <h2>Berufsrechtliche Regelungen</h2>
+      <p>Berufsrechtliche Regelungen für Versicherungsvermittler und -berater:<br>
+      § 34d Gewerbeordnung (GewO), §§ 59–68 Gesetz über den Versicherungsvertrag (VVG), § 48b Versicherungsaufsichtsgesetz (VAG), Verordnung über die Versicherungsvermittlung und -beratung (VersVermV)</p>
+      <p style="margin-top:.5rem">Die berufsrechtlichen Regelungen können über <a href="https://www.gesetze-im-internet.de" target="_blank">www.gesetze-im-internet.de</a> eingesehen werden.</p>
+    </div>
+
+    <div class="imp-divider"></div>
+
+    <div class="imp-section">
+      <h2>Haftpflichtversicherung</h2>
+      <p>
+        Liberty Mutual Insurance Europe SE<br>
+        Direktion für Deutschland<br>
+        Im Klapperhof 7–23, 50670 Köln<br>
+        Geltungsraum der Versicherung: Deutschland
+      </p>
+    </div>
+
+    <div class="imp-section">
+      <h2>Vermögensschaden-Haftpflichtversicherung</h2>
+      <p>
+        Liberty Mutual Insurance Europe SE<br>
+        Direktion für Deutschland<br>
+        Im Klapperhof 7–23, 50670 Köln
+      </p>
+    </div>
+
+    <div class="imp-section">
+      <h2>Inhaltlich verantwortlich</h2>
+      <address>
+        Stivan Stamenov – Einzelunternehmen<br>
+        Stendaler Straße 119, 12627 Berlin
+      </address>
+    </div>
+
+    <div class="imp-divider"></div>
+
+    <div class="imp-section">
+      <h2>EU-Streitschlichtung</h2>
+      <p>Plattform der EU-Kommission zur Online-Streitbeilegung (OS):<br>
+      <a href="https://ec.europa.eu/consumers/odr" target="_blank">https://ec.europa.eu/consumers/odr</a></p>
+      <p style="margin-top:.5rem">Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>Haftung für Inhalte</h2>
+      <p>Als Diensteanbieter sind wir für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Wir sind als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>Haftung für Links</h2>
+      <p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>Urheberrecht</h2>
+      <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>Quellenangaben</h2>
+      <p>Es werden auf unserer Homepage Bilder, Grafiken und Abbildungen verwendet, welche entweder selbst erstellt, lizenzseitig von Bilddatenbanken erworben oder lizenzfrei für die verwendeten Zwecke zur Verfügung gestellt wurden. Für die Nutzung der Makler-Homepage wurden vom Anbieter Medien aus der Bilddatenbank Adobe Stock mit Mehrfachlizenzen erworben.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ DATENSCHUTZ MODAL ═══════════════════════════ -->
+<div class="modal-overlay" id="datenschutz-modal" onclick="closeModal('datenschutz-modal',event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="document.getElementById('datenschutz-modal').classList.remove('open')">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <h1>Datenschutzerklärung</h1>
+    <p class="modal-meta">Letzte Aktualisierung: 31.10.2024 · Gemäß DSGVO, BDSG und TMG</p>
+
+    <div class="imp-section">
+      <h2>Verantwortlicher</h2>
+      <address>
+        Stivan Stamenov<br>
+        Stendaler Straße 119, 12627 Berlin<br>
+        E-Mail: <a href="mailto:info@tarifexperts.de">info@tarifexperts.de</a><br>
+        Telefon: <a href="tel:+491781305804">+49 178 1305804</a>
+      </address>
+    </div>
+
+    <div class="imp-section">
+      <h2>Grundsätze der Datenverarbeitung</h2>
+      <p>Wir verarbeiten personenbezogene Daten nur, soweit dies zur Bereitstellung unserer Dienstleistungen erforderlich ist und eine Rechtsgrundlage nach Art. 6 DSGVO vorliegt. Ihre Daten werden nicht ohne Ihre ausdrückliche Einwilligung an Dritte weitergegeben, es sei denn, dies ist zur Vertragserfüllung notwendig oder gesetzlich vorgeschrieben.</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>Erhobene Daten und Zwecke</h2>
+      <p><strong>Kontakt- und Anfragedaten:</strong> Wenn Sie unser Vergleichsformular ausfüllen, erheben wir Vorname, Nachname, Geburtsdatum, Postleitzahl und E-Mail-Adresse. Diese Daten verwenden wir ausschließlich zur Erstellung Ihres persönlichen Tarifvergleichs und zur Kontaktaufnahme.<br><br>
+      <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung bzw. vorvertragliche Maßnahmen).<br><br>
+      <strong>Server-Logfiles:</strong> Bei jedem Aufruf der Website werden automatisch technische Daten übermittelt (IP-Adresse, Browsertyp, Betriebssystem, Datum/Uhrzeit). Diese Daten werden nur zur technischen Bereitstellung der Website verwendet und nicht mit anderen Daten zusammengeführt. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>Speicherdauer</h2>
+      <p>Personenbezogene Daten aus Anfragen werden nach Abschluss des jeweiligen Vorgangs gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen. Handels- und steuerrechtliche Aufbewahrungsfristen betragen bis zu 10 Jahre.</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>Weitergabe an Dritte</h2>
+      <p>Ihre Daten werden ausschließlich zur Erstellung des Tarifvergleichs an die jeweiligen Versicherungsgesellschaften weitergeleitet, sofern Sie eine Anfrage gestellt haben und einer Weiterleitung zustimmen. Eine Weitergabe zu Werbezwecken an Dritte erfolgt nicht.</p>
+    </div>
+
+    <div class="imp-divider"></div>
+
+    <div class="imp-section">
+      <h2>Ihre Rechte (Art. 15–22 DSGVO)</h2>
+      <p>Sie haben jederzeit das Recht auf:<br><br>
+      <strong>Auskunft</strong> über Ihre bei uns gespeicherten Daten (Art. 15 DSGVO)<br>
+      <strong>Berichtigung</strong> unrichtiger Daten (Art. 16 DSGVO)<br>
+      <strong>Löschung</strong> Ihrer Daten (Art. 17 DSGVO)<br>
+      <strong>Einschränkung</strong> der Verarbeitung (Art. 18 DSGVO)<br>
+      <strong>Datenübertragbarkeit</strong> (Art. 20 DSGVO)<br>
+      <strong>Widerspruch</strong> gegen die Verarbeitung (Art. 21 DSGVO)<br><br>
+      Zur Ausübung Ihrer Rechte wenden Sie sich an: <a href="mailto:info@tarifexperts.de">info@tarifexperts.de</a></p>
+    </div>
+
+    <div class="imp-section">
+      <h2>Beschwerderecht</h2>
+      <p>Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren. Die zuständige Behörde für Berlin ist:<br><br>
+      Berliner Beauftragte für Datenschutz und Informationsfreiheit<br>
+      Alt-Moabit 59–61, 10555 Berlin<br>
+      <a href="https://www.datenschutz-berlin.de" target="_blank">www.datenschutz-berlin.de</a></p>
+    </div>
+
+    <div class="imp-section">
+      <h2>SSL-Verschlüsselung</h2>
+      <p>Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von „http://" auf „https://" wechselt.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ AGB MODAL ═══════════════════════════ -->
+<div class="modal-overlay" id="agb-modal" onclick="closeModal('agb-modal',event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="document.getElementById('agb-modal').classList.remove('open')">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <h1>Allgemeine Geschäftsbedingungen</h1>
+    <p class="modal-meta">Stand: 31.10.2024 · tarifexperts. – Stivan Stamenov</p>
+
+    <div class="imp-section">
+      <h2>§ 1 Geltungsbereich</h2>
+      <p>Diese Allgemeinen Geschäftsbedingungen gelten für alle Leistungen von Stivan Stamenov, tätig unter der Marke tarifexperts., Stendaler Straße 119, 12627 Berlin (nachfolgend „tarifexperts") gegenüber Verbrauchern und Unternehmern, die den Vergleichs- und Vermittlungsservice in Anspruch nehmen.</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>§ 2 Leistungsbeschreibung</h2>
+      <p>tarifexperts erbringt als Versicherungsmakler mit Erlaubnis nach § 34d Abs. 1 GewO folgende Leistungen:<br><br>
+      – Unabhängiger Vergleich von Zahnzusatzversicherungen auf dem deutschen Markt<br>
+      – Beratung und Empfehlung geeigneter Tarife auf Basis der vom Kunden angegebenen Kriterien<br>
+      – Vermittlung von Versicherungsverträgen zwischen Kunde und Versicherungsgesellschaft<br><br>
+      Die Inanspruchnahme des Vergleichsservices ist für den Kunden kostenlos. tarifexperts erhält im Falle eines vermittelten Vertragsabschlusses eine Provision von der jeweiligen Versicherungsgesellschaft.</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>§ 3 Vertragsschluss und Anfrageprozess</h2>
+      <p>Mit dem Absenden des Vergleichsformulars erteilt der Kunde tarifexperts den Auftrag zur unverbindlichen Tarifanalyse. Ein verbindlicher Versicherungsvertrag kommt erst durch den gesonderten Abschluss beim jeweiligen Versicherungsunternehmen zustande. tarifexperts ist lediglich als Vermittler tätig und wird nicht selbst Vertragspartei des Versicherungsvertrages.</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>§ 4 Pflichten des Kunden</h2>
+      <p>Der Kunde ist verpflichtet, alle für den Vergleich relevanten Angaben wahrheitsgemäß und vollständig zu machen. Unrichtige Angaben können die Wirksamkeit eines vermittelten Versicherungsvertrages beeinträchtigen. Für Schäden, die aus unvollständigen oder falschen Angaben entstehen, übernimmt tarifexperts keine Haftung.</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>§ 5 Haftung</h2>
+      <p>tarifexperts haftet für Vorsatz und grobe Fahrlässigkeit unbeschränkt. Bei einfacher Fahrlässigkeit haftet tarifexperts nur bei Verletzung wesentlicher Vertragspflichten (Kardinalpflichten), begrenzt auf den vertragstypisch vorhersehbaren Schaden. Die Haftung für mittelbare Schäden und entgangenen Gewinn ist ausgeschlossen, soweit gesetzlich zulässig. Die gesetzliche Haftung nach dem Produkthaftungsgesetz und für Schäden aus der Verletzung von Leben, Körper oder Gesundheit bleibt unberührt.</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>§ 6 Widerrufsrecht</h2>
+      <p>Verbraucher haben das Recht, einen mit tarifexperts geschlossenen Maklervertrag innerhalb von 14 Tagen ohne Angabe von Gründen zu widerrufen. Die Widerrufsfrist beginnt mit Vertragsschluss. Der Widerruf ist zu richten an: <a href="mailto:info@tarifexperts.de">info@tarifexperts.de</a> oder Stendaler Straße 119, 12627 Berlin.</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>§ 7 Datenschutz</h2>
+      <p>Die Verarbeitung personenbezogener Daten erfolgt gemäß unserer Datenschutzerklärung, die jederzeit auf unserer Website abrufbar ist.</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>§ 8 Anwendbares Recht und Gerichtsstand</h2>
+      <p>Es gilt das Recht der Bundesrepublik Deutschland. Bei Verbrauchern gilt dies nur, soweit dadurch keine zwingenden Schutzvorschriften des Rechts des Staates, in dem der Verbraucher seinen gewöhnlichen Aufenthalt hat, ausgeschlossen werden. Gerichtsstand für Kaufleute und juristische Personen des öffentlichen Rechts ist Berlin.</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>§ 9 Salvatorische Klausel</h2>
+      <p>Sollten einzelne Bestimmungen dieser AGB unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen hiervon unberührt. Die unwirksame Bestimmung gilt als durch eine wirksame ersetzt, die dem wirtschaftlichen Zweck der unwirksamen Bestimmung am nächsten kommt.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ COOKIE MODAL ═══════════════════════════ -->
+<div class="modal-overlay" id="cookie-modal" onclick="closeModal('cookie-modal',event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="document.getElementById('cookie-modal').classList.remove('open')">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <h1>Cookie-Richtlinie</h1>
+    <p class="modal-meta">Stand: 31.10.2024 · Gemäß DSGVO und ePrivacy-Richtlinie</p>
+
+    <div class="imp-section">
+      <h2>Was sind Cookies?</h2>
+      <p>Cookies sind kleine Textdateien, die beim Besuch unserer Website auf Ihrem Endgerät gespeichert werden. Sie ermöglichen es uns, Ihren Browser bei einem erneuten Besuch wiederzuerkennen und bestimmte Einstellungen zu speichern. Cookies richten keinen Schaden auf Ihrem Endgerät an und enthalten keine Viren.</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>Technisch notwendige Cookies</h2>
+      <p>Diese Cookies sind für den Betrieb der Website unbedingt erforderlich und können nicht deaktiviert werden. Sie werden ausschließlich als Reaktion auf von Ihnen durchgeführte Aktionen gesetzt (z. B. Spracheinstellungen, Sitzungsverwaltung).<br><br>
+      Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am technischen Betrieb der Website).<br>
+      Speicherdauer: Sitzungsdauer bzw. bis zu 12 Monate.</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>Analyse-Cookies (nur mit Einwilligung)</h2>
+      <p>Sofern Sie Ihre Einwilligung erteilt haben, setzen wir Analyse-Cookies ein, um das Nutzungsverhalten auf unserer Website statistisch auszuwerten und unser Angebot zu verbessern. Die dabei erhobenen Daten werden anonymisiert und nicht mit Ihren personenbezogenen Daten verknüpft.<br><br>
+      Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO (Einwilligung).<br>
+      Speicherdauer: bis zu 24 Monate.</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>Google Fonts</h2>
+      <p>Unsere Website lädt Schriftarten über Google Fonts (Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA). Beim Laden der Schriftarten wird Ihre IP-Adresse an Google-Server übertragen. Wir haben ein berechtigtes Interesse an der einheitlichen Darstellung unserer Website (Art. 6 Abs. 1 lit. f DSGVO). Informationen zu Google Fonts und Datenschutz finden Sie unter <a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a>.</p>
+    </div>
+
+    <div class="imp-divider"></div>
+
+    <div class="imp-section">
+      <h2>Cookies verwalten und deaktivieren</h2>
+      <p>Sie können Cookies in den Einstellungen Ihres Browsers jederzeit löschen oder deren Speicherung verhindern. Bitte beachten Sie, dass bei Deaktivierung aller Cookies möglicherweise nicht alle Funktionen unserer Website vollständig genutzt werden können.<br><br>
+      Anleitungen für gängige Browser:<br><br>
+      <strong>Chrome:</strong> Einstellungen → Datenschutz und Sicherheit → Cookies<br>
+      <strong>Firefox:</strong> Einstellungen → Datenschutz &amp; Sicherheit → Cookies<br>
+      <strong>Safari:</strong> Einstellungen → Datenschutz → Cookies<br>
+      <strong>Edge:</strong> Einstellungen → Datenschutz, Suche und Dienste → Cookies</p>
+    </div>
+
+    <div class="imp-section">
+      <h2>Widerruf Ihrer Einwilligung</h2>
+      <p>Eine einmal erteilte Einwilligung zur Nutzung von Cookies können Sie jederzeit mit Wirkung für die Zukunft widerrufen. Wenden Sie sich dazu an: <a href="mailto:info@tarifexperts.de">info@tarifexperts.de</a></p>
+    </div>
+
+    <div class="imp-section">
+      <h2>Kontakt</h2>
+      <p>Bei Fragen zu unserer Cookie-Richtlinie erreichen Sie uns unter:<br>
+      <a href="mailto:info@tarifexperts.de">info@tarifexperts.de</a> · <a href="tel:+491781305804">+49 178 1305804</a></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Sticky header
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Mobile menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+  // FAQ accordion
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Leistung toggle
+  function toggleLeistung(btn) {
+    btn.classList.toggle('active');
+    const check = btn.querySelector('.leistung-check');
+    if (btn.classList.contains('active')) {
+      check.innerHTML = '<svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    } else {
+      check.innerHTML = '';
+    }
+  }
+
+  // Form submit
+  function submitForm(e) {
+    e.preventDefault();
+    document.getElementById('form-container').style.display = 'none';
+    document.getElementById('success-container').style.display = 'block';
+    document.getElementById('success-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function resetForm() {
+    document.getElementById('contact-form').reset();
+    document.querySelectorAll('.leistung-btn').forEach(btn => {
+      btn.classList.remove('active');
+      btn.querySelector('.leistung-check').innerHTML = '';
+    });
+    document.getElementById('success-container').style.display = 'none';
+    document.getElementById('form-container').style.display = 'block';
+  }
+
+  // Modals (Impressum, Datenschutz, AGB, Cookie)
+  function closeModal(id, e) {
+    if (e.target === document.getElementById(id)) {
+      document.getElementById(id).classList.remove('open');
+    }
+  }
+  function closeImpressum(e) { closeModal('impressum-modal', e); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      ['impressum-modal','datenschutz-modal','agb-modal','cookie-modal']
+        .forEach(id => document.getElementById(id).classList.remove('open'));
+    }
+  });
+
+  // Smooth close mobile menu on scroll
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) mobileMenu.classList.remove('open');
+  });
+</script>
+</body>
+</html>

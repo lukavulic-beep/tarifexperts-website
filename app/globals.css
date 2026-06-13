@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: #1F6F78;
+    --primary-dark: #165E66;
+    --primary-light: #2A9AA6;
+    --accent: #EE6C4D;
+    --accent-dark: #D4593C;
+    --bg: #F4F5F6;
+    --surface: #FFFFFF;
+    --text: #0F1F2E;
+    --text-secondary: #2D3F50;
+    --muted: #6B7280;
+    --border: #E2E4E6;
+  }
+
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg bg-primary text-white font-semibold text-sm transition-all duration-200 hover:bg-primary-dark hover:shadow-cta focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg border-2 border-primary text-primary font-semibold text-sm transition-all duration-200 hover:bg-primary hover:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg text-primary font-semibold text-sm transition-all duration-200 hover:bg-primary-100 focus:outline-none;
+  }
+
+  .card {
+    @apply bg-surface rounded-2xl shadow-card border border-border transition-all duration-300 hover:shadow-card-hover;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-text leading-tight;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-muted leading-relaxed;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold;
+  }
+
+  .badge-green {
+    @apply bg-accent-50 text-accent-dark;
+  }
+
+  .badge-blue {
+    @apply bg-primary-100 text-primary;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-lg border border-border bg-surface text-text placeholder-muted text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary;
+  }
+}
+
+@layer utilities {
+  .text-gradient-primary {
+    background: linear-gradient(135deg, #1F6F78, #2A9AA6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
+  .animate-delay-400 { animation-delay: 400ms; }
+}
