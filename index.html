@@ -241,6 +241,18 @@
     .imp-reg { display: inline-block; background: var(--primary-50); border: 1px solid var(--primary-100); border-radius: .5rem; padding: .375rem .875rem; font-size: .875rem; font-weight: 600; color: var(--primary); margin-top: .375rem; }
     .imp-divider { height: 1px; background: var(--border); margin: 1.75rem 0; }
 
+    /* ── TEAM ── */
+    #team { background: var(--bg); }
+    .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 52rem; margin: 0 auto; }
+    @media (max-width: 600px) { .team-grid { grid-template-columns: 1fr; max-width: 22rem; } }
+    .team-card { background: #fff; border-radius: 1.5rem; border: 1px solid var(--border); overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,.07); transition: box-shadow .25s; }
+    .team-card:hover { box-shadow: 0 10px 30px rgba(31,111,120,.12); }
+    .team-photo { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: top; display: block; }
+    .team-info { padding: 1.5rem; }
+    .team-name { font-size: 1.125rem; font-weight: 800; color: var(--text); margin-bottom: .25rem; }
+    .team-role { font-size: .875rem; font-weight: 600; color: var(--primary); margin-bottom: .75rem; }
+    .team-desc { font-size: .875rem; color: var(--muted); line-height: 1.6; }
+
     /* ── FOOTER ── */
     footer { background: var(--text); color: #fff; }
     .footer-cta-band { background: var(--primary); padding: 3rem 0; }
@@ -561,6 +573,33 @@
     <div class="table-note">
       <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       Die dargestellten Tarife und Preise dienen als Orientierung und können je nach Alter und Gesundheitszustand variieren. Für ein exaktes Angebot nutzen Sie bitte unser Vergleichsformular.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ TEAM ═══════════════════════════ -->
+<section id="team" class="section">
+  <div class="container">
+    <div class="section-label"><span class="badge badge-primary">Ihr Expertenteam</span></div>
+    <h2 class="section-title">Persönliche Beratung von <span class="gradient-text">echten Experten</span></h2>
+    <p class="section-sub">Hinter tarifexperts stehen echte Menschen – keine Algorithmen. Wir kennen den Markt und finden den passenden Tarif für Sie.</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <img src="BIld Stivan.jpeg" alt="Stivan Stamenov" class="team-photo" />
+        <div class="team-info">
+          <div class="team-name">Stivan Stamenov</div>
+          <div class="team-role">Geschäftsführer</div>
+          <div class="team-desc">Versicherungsmakler mit Erlaubnis nach § 34d GewO. Stivan berät seit Jahren Kunden bei der Wahl der optimalen Zahnzusatzversicherung.</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <img src="Bild Luka.jpg" alt="Luka Vulic" class="team-photo" />
+        <div class="team-info">
+          <div class="team-name">Luka Vulic</div>
+          <div class="team-role">Vertriebsleiter</div>
+          <div class="team-desc">Luka begleitet unsere Kunden vom ersten Vergleich bis zum Vertragsabschluss – persönlich, schnell und ohne Druck.</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
