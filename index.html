@@ -243,11 +243,11 @@
 
     /* ── TEAM ── */
     #team { background: var(--bg); }
-    .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 52rem; margin: 0 auto; }
-    @media (max-width: 600px) { .team-grid { grid-template-columns: 1fr; max-width: 22rem; } }
+    .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 40rem; margin: 0 auto; }
+    @media (max-width: 600px) { .team-grid { grid-template-columns: 1fr; max-width: 20rem; } }
     .team-card { background: #fff; border-radius: 1.5rem; border: 1px solid var(--border); overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,.07); transition: box-shadow .25s; }
     .team-card:hover { box-shadow: 0 10px 30px rgba(31,111,120,.12); }
-    .team-photo { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: top; display: block; }
+    .team-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top center; display: block; }
     .team-info { padding: 1.5rem; }
     .team-name { font-size: 1.125rem; font-weight: 800; color: var(--text); margin-bottom: .25rem; }
     .team-role { font-size: .875rem; font-weight: 600; color: var(--primary); margin-bottom: .75rem; }
@@ -309,6 +309,8 @@
 
       /* Form */
       .form-row { grid-template-columns: 1fr; gap: 0; }
+      .form-group { min-width: 0; }
+      input[type="date"] { min-width: 0; width: 100%; font-size: .875rem; }
       .form-card { padding: 1.5rem 1.25rem; }
       .leistungen-grid { gap: .5rem; }
       .btn-submit { font-size: .9375rem; }
