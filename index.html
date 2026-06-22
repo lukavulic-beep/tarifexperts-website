@@ -244,6 +244,15 @@
     .imp-reg { display: inline-block; background: var(--primary-50); border: 1px solid var(--primary-100); border-radius: .5rem; padding: .375rem .875rem; font-size: .875rem; font-weight: 600; color: var(--primary); margin-top: .375rem; }
     .imp-divider { height: 1px; background: var(--border); margin: 1.75rem 0; }
 
+    /* ── LOGO TICKER ── */
+    #partner-logos { background: #fff; padding: 2.5rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; }
+    #partner-logos .ticker-label { text-align: center; font-size: .75rem; font-weight: 600; letter-spacing: .1em; color: var(--muted); text-transform: uppercase; margin-bottom: 1.5rem; }
+    .ticker-track { display: flex; width: max-content; animation: ticker-scroll 22s linear infinite; }
+    .ticker-track:hover { animation-play-state: paused; }
+    .ticker-track img { height: 2.75rem; width: auto; flex-shrink: 0; object-fit: contain; filter: grayscale(1); opacity: .5; transition: filter .3s, opacity .3s; padding-right: 4rem; }
+    .ticker-track img:hover { filter: grayscale(0); opacity: 1; }
+    @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
     /* ── TEAM ── */
     #team { background: var(--bg); }
     .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 40rem; margin: 0 auto; }
@@ -715,6 +724,15 @@
     </div>
   </div>
 </section>
+
+<!-- ═══════════════════════ PARTNER LOGOS ════════════════════ -->
+<div id="partner-logos">
+  <p class="ticker-label">Unsere Versicherungspartner</p>
+  <div class="ticker-track">
+    <img src="logos.PNG" alt="Versicherungspartner" />
+    <img src="logos.PNG" alt="Versicherungspartner" aria-hidden="true" />
+  </div>
+</div>
 
 <!-- ═══════════════════════════ FAQ ═══════════════════════════ -->
 <section id="faq" class="section section-bg-white">
