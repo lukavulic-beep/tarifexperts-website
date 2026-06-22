@@ -645,33 +645,34 @@
             <div class="form-row">
               <div class="form-group">
                 <label>Vorname <span class="req">*</span></label>
-                <input type="text" required placeholder="Max" />
+                <input type="text" name="Vorname" required placeholder="Max" />
               </div>
               <div class="form-group">
                 <label>Nachname <span class="req">*</span></label>
-                <input type="text" required placeholder="Mustermann" />
+                <input type="text" name="Nachname" required placeholder="Mustermann" />
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label>Geburtsdatum <span class="req">*</span></label>
-                <input type="date" required />
+                <input type="date" name="Geburtsdatum" required />
               </div>
               <div class="form-group">
                 <label>Postleitzahl <span class="req">*</span></label>
-                <input type="text" required placeholder="10115" maxlength="5" pattern="[0-9]{5}" />
+                <input type="text" name="Postleitzahl" required placeholder="10115" maxlength="5" pattern="[0-9]{5}" />
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label>E-Mail-Adresse <span class="req">*</span></label>
-                <input type="email" required placeholder="max.mustermann@email.de" />
+                <input type="email" name="email" required placeholder="max.mustermann@email.de" />
               </div>
               <div class="form-group">
                 <label>Telefonnummer <span class="req">*</span></label>
-                <input type="tel" required placeholder="+49 170 1234567" />
+                <input type="tel" name="Telefonnummer" required placeholder="+49 170 1234567" />
               </div>
             </div>
+            <input type="hidden" name="Gewünschte Leistungen" id="leistungen-value" value="Keine Angabe" />
             <span class="leistungen-label">Welche Leistungen sind Ihnen wichtig?</span>
             <div class="leistungen-grid">
               <button type="button" class="leistung-btn" onclick="toggleLeistung(this)">
@@ -1205,14 +1206,40 @@
     } else {
       check.innerHTML = '';
     }
+    const selected = Array.from(document.querySelectorAll('.leistung-btn.active'))
+      .map(b => b.querySelector('.leistung-name').textContent);
+    document.getElementById('leistungen-value').value = selected.length ? selected.join(', ') : 'Keine Angabe';
   }
 
-  // Form submit
-  function submitForm(e) {
+  // Form submit → Formspree
+  async function submitForm(e) {
     e.preventDefault();
-    document.getElementById('form-container').style.display = 'none';
-    document.getElementById('success-container').style.display = 'block';
-    document.getElementById('success-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const form = document.getElementById('contact-form');
+    const btn = form.querySelector('[type="submit"]');
+    btn.disabled = true;
+    btn.innerHTML = '<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Wird gesendet…';
+    try {
+      const res = await fetch('https://formspree.io/f/mvzjooeb', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        document.getElementById('form-container').style.display = 'none';
+        document.getElementById('success-container').style.display = 'block';
+        document.getElementById('success-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        const data = await res.json();
+        const msg = data.errors ? data.errors.map(e => e.message).join(', ') : 'Unbekannter Fehler';
+        alert('Fehler beim Senden: ' + msg + '\nBitte versuchen Sie es erneut.');
+        btn.disabled = false;
+        btn.innerHTML = '<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Kostenlosen Vergleich anfordern';
+      }
+    } catch {
+      alert('Netzwerkfehler. Bitte Internetverbindung prüfen und erneut versuchen.');
+      btn.disabled = false;
+      btn.innerHTML = '<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Kostenlosen Vergleich anfordern';
+    }
   }
 
   function resetForm() {
@@ -1221,6 +1248,7 @@
       btn.classList.remove('active');
       btn.querySelector('.leistung-check').innerHTML = '';
     });
+    document.getElementById('leistungen-value').value = 'Keine Angabe';
     document.getElementById('success-container').style.display = 'none';
     document.getElementById('form-container').style.display = 'block';
   }
