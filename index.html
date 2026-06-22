@@ -245,13 +245,14 @@
     .imp-divider { height: 1px; background: var(--border); margin: 1.75rem 0; }
 
     /* ── LOGO TICKER ── */
-    #partner-logos { background: #fff; padding: 2.5rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; }
+    #partner-logos { background: #fff; padding: 2.5rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     #partner-logos .ticker-label { text-align: center; font-size: .75rem; font-weight: 600; letter-spacing: .1em; color: var(--muted); text-transform: uppercase; margin-bottom: 1.5rem; }
-    .ticker-track { display: flex; width: max-content; animation: ticker-scroll 22s linear infinite; }
+    .ticker-wrap { overflow: hidden; }
+    .ticker-track { display: flex; width: max-content; animation: ticker-scroll 28s linear infinite; will-change: transform; }
     .ticker-track:hover { animation-play-state: paused; }
-    .ticker-track img { height: 2.75rem; width: auto; flex-shrink: 0; object-fit: contain; filter: grayscale(1); opacity: .5; transition: filter .3s, opacity .3s; padding-right: 4rem; }
-    .ticker-track img:hover { filter: grayscale(0); opacity: 1; }
-    @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .ticker-track img { height: 2.75rem; width: auto; flex-shrink: 0; display: block; filter: grayscale(1); opacity: .5; }
+    .ticker-track img:hover { filter: grayscale(0); opacity: 1; transition: filter .3s, opacity .3s; }
+    @keyframes ticker-scroll { to { transform: translateX(-25%); } }
 
     /* ── TEAM ── */
     #team { background: var(--bg); }
@@ -728,9 +729,13 @@
 <!-- ═══════════════════════ PARTNER LOGOS ════════════════════ -->
 <div id="partner-logos">
   <p class="ticker-label">Unsere Versicherungspartner</p>
-  <div class="ticker-track">
-    <img src="logos.PNG" alt="Versicherungspartner" />
-    <img src="logos.PNG" alt="Versicherungspartner" aria-hidden="true" />
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <img src="logos.PNG" alt="Versicherungspartner" />
+      <img src="logos.PNG" aria-hidden="true" />
+      <img src="logos.PNG" aria-hidden="true" />
+      <img src="logos.PNG" aria-hidden="true" />
+    </div>
   </div>
 </div>
 
